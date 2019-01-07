@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
+import person from './Person/Person';
 
 class App extends Component {
 
@@ -41,29 +42,31 @@ class App extends Component {
       color: '#fff',
       fontSize: '12px',
       cursor: 'pointer',
-    };    
+    };  
+
+    let persons = null;
+
+    if ( this.state.showPersons ) {
+       persons = (
+              <div>
+                {this.state.persons.map(person => {
+                  return <Person 
+                          name={person.name}
+                          age={person.age} />
+                })}
+
+              
+              </div>
+
+            );
+    }
     
     return (
       <div className="App">
           <h1> Hi, I'm a React App </h1>
           <button style={style} onClick={this.togglePersonHandler}>Switch Name</button>
 
-        {
-          this.state.showPersons === true ?
-          <div>
-          <Person 
-          name={this.state.persons[0].name} 
-          age={this.state.persons[0].age}> First child  </Person>
-          <Person 
-          name={this.state.persons[1].name} 
-          age={this.state.persons[1].age}
-          click={this.switchNameHandler.bind(this, 'Ganushka')}
-          change={this.switchNameHandler}>My Hobbies: Racing </Person>
-          <Person 
-          name={this.state.persons[2].name} 
-          age={this.state.persons[2].age}>  Watch 037</Person>
-          </div> : null 
-        }
+          {persons}
 
       </div> 
     );
