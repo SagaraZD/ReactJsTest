@@ -34,8 +34,8 @@ class App extends Component {
     deletePersonHandler = (personIndex) => {
      // const persons = this.state.persons.slice();
         const persons = [...this.state.persons];
-      persons.splice(personIndex, 1);
-      this.setState({persons: persons})
+        persons.splice(personIndex, 1);
+        this.setState({persons: persons})
     }
 
 
@@ -45,17 +45,8 @@ class App extends Component {
     }
 
   render() {
-
-    const style = {
-      backgroundColor: 'green',
-      border: 'none',
-      color:'white',
-      padding: '20px 10px',
-      fontSize: '12px',
-      cursor: 'pointer',
-    };  
-
     let persons = null;
+    let btnClass = '';
 
     if ( this.state.showPersons ) {
        persons = (
@@ -71,17 +62,17 @@ class App extends Component {
                   })}
               </div>
             );
-            style.backgroundColor='red';
+            btnClass = classes.Red;
     }
 
     //let classes = ['red', 'bold'].join(' ');
     
     const Assignedclasses = [];
     if (this.state.persons.length <=2){
-      Assignedclasses.push('red');
+      Assignedclasses.push(classes.red);
     }
     if (this.state.persons.length <=1) {
-      Assignedclasses.push('bold');
+      Assignedclasses.push(classes.bold);
     }
 
     
@@ -90,7 +81,9 @@ class App extends Component {
       <div className={classes.App}>
           <h1> Hi, I'm a React App </h1>
           <p className={Assignedclasses.join(' ')}> This is really working!</p>
-          <button style={style} onClick={this.togglePersonHandler}>Switch Name</button>
+          <button 
+            className={btnClass} 
+            onClick={this.togglePersonHandler} >Switch Name</button>
 
           {persons}
 
