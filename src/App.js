@@ -47,10 +47,10 @@ class App extends Component {
   render() {
 
     const style = {
-      backgroundColor: 'blue',
+      backgroundColor: 'green',
       border: 'none',
+      color:'white',
       padding: '20px 10px',
-      color: '#fff',
       fontSize: '12px',
       cursor: 'pointer',
     };  
@@ -69,16 +69,26 @@ class App extends Component {
                           change = {(event)=> this.nameChangeHandler(event, person.id)}
                           />
                   })}
-
-              
               </div>
-
             );
+            style.backgroundColor='red';
     }
+
+    //let classes = ['red', 'bold'].join(' ');
+    
+    const classes = [];
+    if (this.state.persons.length <=2){
+      classes.push('red');
+    }
+    if (this.state.persons.length <=1) {
+      classes.push('bold');
+    }
+
     
     return (
       <div className="App">
           <h1> Hi, I'm a React App </h1>
+          <p className={classes.join(' ')}> This is really working!</p>
           <button style={style} onClick={this.togglePersonHandler}>Switch Name</button>
 
           {persons}
